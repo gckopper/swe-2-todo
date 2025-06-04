@@ -5,13 +5,13 @@ import com.infrastructure.model.TaskDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
-public interface JpaTaskRepository extends JpaRepository<TaskDto, BigInteger> {
+public interface JpaTaskRepository extends JpaRepository<TaskDto, UUID> {
     @Override
-    Optional<TaskDto> findById(BigInteger id);
-    List<Task> findByUserId(BigInteger userId);
+    Optional<TaskDto> findById(UUID id);
+    List<Task> findByUserId(UUID userId);
 }

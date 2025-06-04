@@ -3,8 +3,8 @@ package com.domain.model;
 import com.domain.repository.TaskRepositoryPort;
 import com.domain.service.TaskService;
 
-import java.math.BigInteger;
 import java.util.List;
+import java.util.UUID;
 
 public class TaskServiceImpl implements TaskService {
     TaskRepositoryPort repository;
@@ -14,7 +14,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Task getTasksById(BigInteger taskId) {
+    public Task getTasksById(UUID taskId) {
         return repository.findById(taskId).orElse(null);
     }
 

@@ -1,11 +1,10 @@
 package com.infrastructure.model;
 
-import jakarta.persistence.ConstructorResult;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
 
-import java.math.BigInteger;
+import java.util.UUID;
 
 @Entity
 @Setter
@@ -15,6 +14,6 @@ import java.math.BigInteger;
 @NoArgsConstructor
 public class TaskDto {
     @Id
-    private BigInteger id;
+    private UUID id;
     private String title;
 }
