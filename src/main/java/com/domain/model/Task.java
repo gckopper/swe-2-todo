@@ -4,11 +4,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigInteger;
+
 @Builder(toBuilder = true)
 @Getter
 @Setter
 public class Task {
-    private String id;
+    private BigInteger id;
     private User owner;
     private User assignedToUser;
     private String title;

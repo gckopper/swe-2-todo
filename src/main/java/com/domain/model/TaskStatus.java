@@ -6,11 +6,14 @@ import lombok.Setter;
 
 import java.math.BigInteger;
 
-@Builder(toBuilder = true)
-@Getter
-@Setter
-public class TaskStatus {
-    private BigInteger id;
-    private String name;
-    private String description;
+public enum TaskStatus {
+    BACKLOG("Backlog"),
+    IN_PROGRESS("InProgress"),
+    IN_REVIEW("InReview"),
+    CLOSED("Closed");
+    private final String value;
+    TaskStatus(String value){
+        this.value = value;
+    }
+    public String getValue(){ return this.value; }
 }
