@@ -2,7 +2,7 @@
 <!-- https://github.com/joelparkerhenderson/architecture-decision-record/tree/main/locales/en/templates/decision-record-template-by-michael-nygard -->
 ## Status
 
-Pendente
+Aceito
 
 ## Contexto
 
