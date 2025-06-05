@@ -11,7 +11,7 @@ Hexagonal, Clean Architecture ou MVC), garantindo boas práticas de desacoplamen
 Inicie uma instância do postgres com o docker caso ainda não tenha uma rodando.
 
 ```bash
-docker compose -f docker/postgresql-dev.yaml
+docker compose -f docker/postgresql-dev.yaml up
 ```
 
 Inicie a aplicação.
