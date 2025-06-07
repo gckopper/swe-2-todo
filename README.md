@@ -6,7 +6,7 @@ As equipes deverão desenvolver uma API para um sistema de Gestão de tarefas Co
 criem, editem, atribuam e concluam tarefas. A API deve seguir uma arquitetura bem definida (por exemplo, Arquitetura
 Hexagonal, Clean Architecture ou MVC), garantindo boas práticas de desacoplamento e modularização.
 
-## Developing
+## Desenvolvimento
 
 Inicie uma instância do postgres com o docker caso ainda não tenha uma rodando.
 
