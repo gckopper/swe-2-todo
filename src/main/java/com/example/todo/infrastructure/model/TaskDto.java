@@ -1,4 +1,4 @@
-package com.infrastructure.model;
+package com.example.todo.infrastructure.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

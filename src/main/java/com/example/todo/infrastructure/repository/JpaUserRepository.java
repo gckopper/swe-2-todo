@@ -1,6 +1,6 @@
-package com.infrastructure.repository;
+package com.example.todo.infrastructure.repository;
 
-import com.domain.repository.UserRepositoryPort;
+import com.example.todo.domain.repository.UserRepositoryPort;
 import org.springframework.stereotype.Repository;
 
 @Repository
