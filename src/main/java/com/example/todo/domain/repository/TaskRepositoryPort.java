@@ -1,6 +1,6 @@
-package com.domain.repository;
+package com.example.todo.domain.repository;
 
-import com.domain.model.Task;
+import com.example.todo.domain.model.Task;
 
 import java.util.List;
 import java.util.Optional;

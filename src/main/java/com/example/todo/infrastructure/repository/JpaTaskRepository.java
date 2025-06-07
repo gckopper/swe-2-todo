@@ -1,7 +1,7 @@
-package com.infrastructure.repository;
+package com.example.todo.infrastructure.repository;
 
-import com.domain.model.Task;
-import com.infrastructure.model.TaskDto;
+import com.example.todo.domain.model.Task;
+import com.example.todo.infrastructure.model.TaskDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

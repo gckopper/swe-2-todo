@@ -1,4 +1,4 @@
-package com.domain.model;
+package com.example.todo.domain.model;
 
 import lombok.Builder;
 import lombok.Getter;

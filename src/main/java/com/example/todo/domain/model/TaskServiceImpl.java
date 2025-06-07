@@ -1,7 +1,7 @@
-package com.domain.model;
+package com.example.todo.domain.model;
 
-import com.domain.repository.TaskRepositoryPort;
-import com.domain.service.TaskService;
+import com.example.todo.domain.repository.TaskRepositoryPort;
+import com.example.todo.domain.service.TaskService;
 
 import java.util.List;
 import java.util.UUID;
