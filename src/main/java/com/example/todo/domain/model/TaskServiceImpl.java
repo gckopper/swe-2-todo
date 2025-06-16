@@ -20,6 +20,6 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<Task> getTasksForUser(User user) {
-        return this.repository.findByUserId(user.getId());
+        return this.repository.findByAssignedUserId(user.getId());
     }
 }
