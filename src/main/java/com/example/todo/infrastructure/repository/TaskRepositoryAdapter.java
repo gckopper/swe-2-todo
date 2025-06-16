@@ -10,21 +10,20 @@ import java.util.UUID;
 
 public class TaskRepositoryAdapter implements TaskRepositoryPort {
     JpaTaskRepository taskRepository;
-    TaskMapper taskMapper;
 
     @Override
     public Optional<Task> findById(UUID taskId) {
-        return taskRepository.findById(taskId).map(taskDto -> taskMapper.toDomain(taskDto));
+        return taskRepository.findById(taskId).map(TaskMapper::toDomain);
     }
 
     @Override
     public List<Task> findByOwnerUserId(UUID ownerUserId) {
-        return taskRepository.findByOwnerUserId(ownerUserId).stream().map(taskDto -> taskMapper.toDomain(taskDto)).toList();
+        return taskRepository.findByOwnerUserId(ownerUserId).stream().map(TaskMapper::toDomain).toList();
     }
 
     @Override
     public List<Task> findByAssignedUserId(UUID assignedUserId) {
-        return taskRepository.findByAssignedUserId(assignedUserId).stream().map(taskDto -> taskMapper.toDomain(taskDto)).toList();
+        return taskRepository.findByAssignedUserId(assignedUserId).stream().map(TaskMapper::toDomain).toList();
     }
 
 }

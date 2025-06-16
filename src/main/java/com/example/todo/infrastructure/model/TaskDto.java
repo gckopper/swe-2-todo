@@ -2,6 +2,8 @@ package com.example.todo.infrastructure.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -24,9 +26,13 @@ public class TaskDto {
     @NotNull
     private String status;
     @NotNull
-    private UUID ownerUserId;
+    @ManyToOne
+    @JoinColumn(name = "owner_user_id")
+    private UserDto ownerUser;
     @NotNull
-    private UUID assignedUserId;
+    @ManyToOne
+    @JoinColumn(name = "assigned_user_id")
+    private UserDto assignedUser;
     @NotNull
     private Date createAt;
 }
