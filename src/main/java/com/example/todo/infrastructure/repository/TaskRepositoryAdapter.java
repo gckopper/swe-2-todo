@@ -14,11 +14,17 @@ public class TaskRepositoryAdapter implements TaskRepositoryPort {
 
     @Override
     public Optional<Task> findById(UUID taskId) {
-        return Optional.empty();
+        return taskRepository.findById(taskId).map(taskDto -> taskMapper.toDomain(taskDto));
     }
 
     @Override
-    public List<Task> findByUserId(UUID userId) {
-        return null;
+    public List<Task> findByOwnerUserId(UUID ownerUserId) {
+        return taskRepository.findByOwnerUserId(ownerUserId).stream().map(taskDto -> taskMapper.toDomain(taskDto)).toList();
     }
+
+    @Override
+    public List<Task> findByAssignedUserId(UUID assignedUserId) {
+        return taskRepository.findByAssignedUserId(assignedUserId).stream().map(taskDto -> taskMapper.toDomain(taskDto)).toList();
+    }
+
 }
