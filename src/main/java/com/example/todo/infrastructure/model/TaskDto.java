@@ -1,6 +1,8 @@
 package com.example.todo.infrastructure.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -8,9 +10,10 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-import java.util.Date;
 import java.time.OffsetDateTime;
 import java.util.UUID;
+
+import com.example.todo.domain.model.TaskStatus;
 
 @Entity
 @Table(name = "tasks")
@@ -27,17 +30,15 @@ public class TaskDto {
     @NotNull
     private String description;
     @NotNull
-    private String status;
+    @Enumerated(EnumType.ORDINAL)
+    private TaskStatus status;
     @NotNull
     @ManyToOne
     @JoinColumn(name = "owner_user_id")
     private UserDto ownerUser;
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "assigned_user_id")
     private UserDto assignedUser;
-    @NotNull
-    private Date createAt;
     private OffsetDateTime expectedCompletionDate;
     private String externalCalendarEventId;
 }

@@ -9,9 +9,12 @@ import java.util.UUID;
 
 public interface TaskRepositoryPort {
     @NotNull
-    Optional<Task> findById(@NotNull UUID ownerUserId);
+    Optional<Task> findById(@NotNull UUID taskId);
     @NotNull
     List<Task> findByOwnerUserId(@NotNull UUID ownerUserId);
     @NotNull
     List<Task> findByAssignedUserId(@NotNull UUID assignedUserId);
+    @NotNull
+    Task save(@NotNull Task task);
+    void deleteById(@NotNull UUID taskId);
 }

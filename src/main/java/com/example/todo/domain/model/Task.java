@@ -16,7 +16,7 @@ public class Task {
     private User assignedToUser;
     private String title;
     private String description;
-    private String status;
+    private TaskStatus status;
     private OffsetDateTime expectedCompletionDate;
     private String externalCalendarEventId;
 
