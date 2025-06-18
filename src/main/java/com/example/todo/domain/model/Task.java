@@ -28,7 +28,7 @@ public class Task {
             .title("Deadline: " + title)
             .description(description)
             .startTime(expectedCompletionDate)
-            .endTime(expectedCompletionDate.plusHours(1))
+            .endTime(expectedCompletionDate!=null?expectedCompletionDate.plusHours(1):null)
             .externalToken(assignedToUser.getExternalCalendarServiceToken())
             .build();
     }

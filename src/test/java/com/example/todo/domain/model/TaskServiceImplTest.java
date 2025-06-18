@@ -122,5 +122,46 @@ class TaskServiceImplTest {
 
         Assertions.assertEquals(task, taskService.getTasksByAssignedUser(assignedUserId).get(0));
     }
+    @Test
+    public void updateNonExistingTask(){
+        Task task = Task.builder()
+                .id(UUID.randomUUID())
+                .build();
+        when(taskRepository.findById(task.getId())).thenReturn(Optional.empty());
+
+        Assertions.assertNull(taskService.updateTask(task.getId(), task));
+    }
+    @Test
+    public void updateNonAssignedTask(){
+        User user = User.builder()
+                .id(UUID.randomUUID())
+                .build();
+        Task task = Task.builder()
+                .id(UUID.randomUUID())
+                .owner(user)
+                .title("Abc")
+                .description("Desc")
+                .build();
+        when(taskRepository.findById(task.getId())).thenReturn(Optional.of(task));
+        when(taskRepository.save(task)).thenReturn(task);
+
+        Task expected = Task.builder()
+                .id(task.getId())
+                .owner(user)
+                .title("Abc")
+                .description("Desc")
+                .build();
+        Assertions.assertEquals(expected, taskService.updateTask(task.getId(), task));
+    }
+
+    @Test
+    public void deleteNonExistingTask(){
+        Task task = Task.builder()
+                .id(UUID.randomUUID())
+                .build();
+        when(taskRepository.findById(task.getId())).thenReturn(Optional.empty());
+
+        Assertions.assertFalse(taskService.deleteTask(task.getId()));
+    }
 
 }
