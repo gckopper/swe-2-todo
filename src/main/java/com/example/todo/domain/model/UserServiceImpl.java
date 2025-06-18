@@ -1,5 +1,6 @@
 package com.example.todo.domain.model;
 
+import com.example.todo.domain.repository.UserRepositoryPort;
 import com.example.todo.domain.service.UserService;
 import java.util.Optional;
 import java.util.UUID;
@@ -10,11 +11,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
+    private final UserRepositoryPort userRepository;
 
     @Override
     public User createUser(User user) {
-        return userRepository.save(user);
+        return userRepository.save(user).orElse(null);
     }
 
     @Override
@@ -31,7 +32,7 @@ public class UserServiceImpl implements UserService {
                             .email(user.getEmail())
                             .build();
                     return userRepository.save(updatedUser);
-                });
+                }).orElse(Optional.empty());
     }
 
     @Override

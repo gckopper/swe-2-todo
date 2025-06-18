@@ -14,4 +14,19 @@ public class UserRepositoryAdapter implements UserRepositoryPort {
     public Optional<User> findById(UUID userId) {
         return userRepository.findById(userId).map(UserMapper::toDomain);
     }
+
+    @Override
+    public Optional<User> save(User user) {
+        return Optional.empty();
+    }
+
+    @Override
+    public void deleteById(UUID userId) {
+
+    }
+
+    @Override
+    public boolean existsById(UUID userId) {
+        return false;
+    }
 }
