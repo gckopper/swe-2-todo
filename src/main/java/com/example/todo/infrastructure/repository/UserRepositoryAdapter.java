@@ -36,6 +36,14 @@ public class UserRepositoryAdapter implements UserRepositoryPort {
     }
 
     @Override
+    public Optional<User> save(User user, String passwordHash) {
+        UserDto userDto = UserMapper.toDto(user);
+        userDto.setPasswordHash(passwordHash);
+        UserDto savedUser = userRepository.save(userDto);
+        return Optional.of(UserMapper.toDomain(savedUser));
+    }
+
+    @Override
     public void deleteById(UUID userId) {
         userRepository.deleteById(userId);
     }
@@ -54,5 +62,10 @@ public class UserRepositoryAdapter implements UserRepositoryPort {
             user.setExternalCalendarServiceToken(token);
             userRepository.save(user);
         }
+    }
+
+    @Override
+    public String findPasswordByUsername(String username) {
+        return userRepository.findByName(username).map(UserDto::getPasswordHash).orElse("");
     }
 }

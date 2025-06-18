@@ -5,6 +5,8 @@ import com.example.todo.domain.service.UserService;
 import java.util.Optional;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,9 +15,11 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepositoryPort userRepository;
 
+    private final PasswordEncoder passwordEncoder;
+
     @Override
-    public User createUser(User user) {
-        return userRepository.save(user).orElse(null);
+    public User createUser(User user, String password) {
+        return userRepository.save(user, passwordEncoder.encode(password)).orElse(null);
     }
 
     @Override

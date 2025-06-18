@@ -5,7 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface UserService {
-    User createUser(User user);
+    User createUser(User user, String password);
     Optional<User> getUserById(UUID id);
     Optional<User> updateUser(UUID id, User user);
     boolean deleteUser(UUID id);
