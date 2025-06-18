@@ -9,7 +9,7 @@ public interface CalendarSink {
     CalendarEvent insertEvent(@NotNull CalendarEvent event);
     
     @NotNull
-    void editEvent(@NotNull CalendarEvent event);
+    CalendarEvent editEvent(@NotNull CalendarEvent event);
     
     void deleteEvent(@NotNull CalendarEvent event);
 } 

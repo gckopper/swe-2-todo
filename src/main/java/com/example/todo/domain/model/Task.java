@@ -4,12 +4,14 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Builder(toBuilder = true)
 @Getter
 @Setter
+@EqualsAndHashCode
 public class Task {
     private UUID id;
     private User owner;
@@ -27,7 +29,7 @@ public class Task {
             .description(description)
             .startTime(expectedCompletionDate)
             .endTime(expectedCompletionDate.plusHours(1))
-            .externalToken(owner.getExternalCalendarServiceToken())
+            .externalToken(assignedToUser.getExternalCalendarServiceToken())
             .build();
     }
 
