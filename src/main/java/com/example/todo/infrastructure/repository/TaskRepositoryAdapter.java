@@ -2,7 +2,7 @@ package com.example.todo.infrastructure.repository;
 
 import com.example.todo.domain.model.Task;
 import com.example.todo.domain.repository.TaskRepositoryPort;
-import com.example.todo.infrastructure.model.TaskMapper;
+import com.example.todo.infrastructure.mapper.TaskMapper;
 
 import java.util.List;
 import java.util.Optional;

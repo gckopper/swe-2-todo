@@ -1,6 +1,7 @@
-package com.example.todo.infrastructure.model;
+package com.example.todo.infrastructure.mapper;
 
 import com.example.todo.domain.model.User;
+import com.example.todo.infrastructure.dto.UserDto;
 
 public class UserMapper {
     public static User toDomain(UserDto userDto) {

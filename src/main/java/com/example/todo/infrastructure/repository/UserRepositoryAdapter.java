@@ -2,8 +2,8 @@ package com.example.todo.infrastructure.repository;
 
 import com.example.todo.domain.model.User;
 import com.example.todo.domain.repository.UserRepositoryPort;
-import com.example.todo.infrastructure.model.UserDto;
-import com.example.todo.infrastructure.model.UserMapper;
+import com.example.todo.infrastructure.dto.UserDto;
+import com.example.todo.infrastructure.mapper.UserMapper;
 
 import java.util.Optional;
 import java.util.UUID;
