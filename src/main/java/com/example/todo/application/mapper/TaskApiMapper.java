@@ -55,7 +55,7 @@ public class TaskApiMapper {
     }
     
     public static TaskResponse toResponse(Task task) {
-        TaskResponse response = new TaskResponse();
+        TaskResponse response = TaskResponse.builder().build();
         response.setId(task.getId());
         response.setTitle(task.getTitle());
         response.setDescription(task.getDescription());
