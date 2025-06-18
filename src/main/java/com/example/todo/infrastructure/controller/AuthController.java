@@ -26,17 +26,17 @@ public class AuthController {
     @Autowired
     AuthenticationManager authenticationManager;
 
-    @Value("${todo.signing_key}")
-    private String SINGING_KEY;
+    @Autowired
+    SecretKey signingKey;
 
     @PostMapping("/auth/login")
     public ResponseEntity<String> login(@RequestHeader HttpHeaders headers) {
-        String auth_header = headers.getFirst(HttpHeaders.AUTHORIZATION);
-        if (auth_header == null) {
+        String authHeader = headers.getFirst(HttpHeaders.AUTHORIZATION);
+        if (authHeader == null) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
-        String[] login = auth_header.split(" ");
+        String[] login = authHeader.split(" ");
         if (!login[0].equals("Basic")) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
@@ -51,10 +51,9 @@ public class AuthController {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
-        SecretKey key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(SINGING_KEY));
         UserDetails user = ((UserDetails) authentication.getPrincipal());
         String jwt =
-            Jwts.builder().subject(user.getUsername()).issuedAt(new Date()).signWith(key).compact();
+            Jwts.builder().subject(user.getUsername()).issuedAt(new Date()).signWith(signingKey).compact();
         return ResponseEntity.ok(jwt);
     }
 }

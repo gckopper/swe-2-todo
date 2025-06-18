@@ -16,4 +16,7 @@ public interface UserRepositoryPort {
     @NotNull
     boolean existsById(@NotNull UUID userId);
     void updateExternalCalendarToken(@NotNull UUID userId, @NotNull String token);
+
+    @NotNull
+    Optional<User> findByUsername(@NotNull String username);
 }

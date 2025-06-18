@@ -20,4 +20,6 @@ public class User {
     public boolean usesExternalCalendarService() {
         return externalCalendarServiceToken != null;
     }
+
+    // TODO adicionar a senha do usuário
 }
