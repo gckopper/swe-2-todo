@@ -11,6 +11,10 @@ post {
 }
 
 auth:basic {
-  username: username
+  username: John Smith
   password: password
+}
+
+script:post-response {
+  bru.setEnvVar("token",res.body)
 }

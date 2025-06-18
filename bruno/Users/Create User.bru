@@ -1,0 +1,23 @@
+meta {
+  name: Create User
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/users
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "John Smith",
+    "email": "john.smith@example.com",
+    "password": "password"
+  }
+}
+
+script:post-response {
+  bru.setEnvVar("userId",res.getBody().id)
+}

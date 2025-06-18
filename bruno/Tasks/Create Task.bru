@@ -1,0 +1,30 @@
+meta {
+  name: Create Task
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/tasks
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "title": "Apresentar o trabalho",
+    "description": "Demonstar como a autenticação do projeto funciona",
+    "status": "IN_PROGRESS",
+    "ownerId": "{{userId}}",
+    "assignedUserId": "{{userId}}",
+    "expectedCompletionDate": "2025-06-18T22:23:00Z"
+  }
+}
+
+script:post-response {
+  bru.setEnvVar("taskId",res.getBody().id)
+}
