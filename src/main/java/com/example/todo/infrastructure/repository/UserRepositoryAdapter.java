@@ -23,6 +23,19 @@ public class UserRepositoryAdapter implements UserRepositoryPort {
     }
 
     @Override
+    public Optional<User> save(User user) {
+        return Optional.empty();
+    }
+
+    @Override
+    public void deleteById(UUID userId) {
+
+    }
+
+    @Override
+    public boolean existsById(UUID userId) {
+        return false;
+    }
     public void updateExternalCalendarToken(UUID userId, String token) {
         Optional<UserDto> userOption = userRepository.findById(userId);
 
