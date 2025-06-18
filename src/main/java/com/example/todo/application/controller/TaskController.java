@@ -1,5 +1,6 @@
 package com.example.todo.application.controller;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,9 +21,11 @@ import com.example.todo.application.dto.TaskResponse;
 import com.example.todo.application.dto.UpdateTaskRequest;
 import com.example.todo.application.mapper.TaskApiMapper;
 import com.example.todo.domain.model.Task;
+import com.example.todo.domain.model.TaskStatus;
 import com.example.todo.domain.service.TaskService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
@@ -64,13 +67,21 @@ public class TaskController {
         return ResponseEntity.ok(response);
     }
 
-    @Operation(summary = "Listar tarefas atribuídas a um usuário")
+    @Operation(
+        summary = "Listar tarefas atribuídas a um usuário com filtros opcionais",
+        description = "Lista tarefas atribuídas a um usuário com filtros opcionais por status, data de conclusão e título"
+    )
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Lista de tarefas retornada com sucesso")
     })
     @GetMapping
-    public ResponseEntity<List<TaskResponse>> getTasksByAssignedUser(@RequestParam UUID assignedTo) {
-        List<Task> tasks = taskService.getTasksByAssignedUser(assignedTo);
+    public ResponseEntity<List<TaskResponse>> getTasksByAssignedUser(
+            @Parameter(description = "ID do usuário atribuído às tarefas") @RequestParam UUID assignedTo,
+            @Parameter(description = "Status da tarefa") @RequestParam(required = false) TaskStatus status,
+            @Parameter(description = "Data limite para conclusão (ISO 8601)") @RequestParam(required = false) OffsetDateTime dueBefore,
+            @Parameter(description = "Texto para buscar no título da tarefa") @RequestParam(required = false) String title) {
+        
+        List<Task> tasks = taskService.getTasksByAssignedUserWithFilters(assignedTo, status, dueBefore, title);
         List<TaskResponse> responses = TaskApiMapper.toResponseList(tasks);
         return ResponseEntity.ok(responses);
     }
