@@ -13,7 +13,6 @@ public class TaskApiMapper {
     
     public static Task toDomain(CreateTaskRequest request) {
         return Task.builder()
-            .id(UUID.randomUUID())
             .title(request.getTitle())
             .description(request.getDescription())
             .status(request.getStatus())
