@@ -3,11 +3,15 @@ package com.example.todo.application.dto;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
-import lombok.Data;
+import lombok.*;
 
 import com.example.todo.domain.model.TaskStatus;
 
 @Data
+@Builder
+@Getter
+@Setter
+@EqualsAndHashCode
 public class UpdateTaskRequest {
     private String title;
     private String description;
