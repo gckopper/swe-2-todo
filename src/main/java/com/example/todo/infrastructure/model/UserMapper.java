@@ -8,6 +8,7 @@ public class UserMapper {
             .id(userDto.getId())
             .name(userDto.getName())
             .email(userDto.getEmail())
+            .externalCalendarServiceToken((userDto.getExternalCalendarServiceToken()))
             .build();
     }
     public static UserDto toDto(User user) {
@@ -15,6 +16,7 @@ public class UserMapper {
             .id(user.getId())
             .name(user.getName())
             .email(user.getEmail())
+            .externalCalendarServiceToken((user.getExternalCalendarServiceToken()))
             .build();
     }
 }

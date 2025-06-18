@@ -11,10 +11,12 @@ public class TaskMapper {
             .status(taskDto.getStatus())
             .assignedToUser(UserMapper.toDomain(taskDto.getAssignedUser()))
             .owner(UserMapper.toDomain(taskDto.getOwnerUser()))
+            .expectedCompletionDate(taskDto.getExpectedCompletionDate())
+            .externalCalendarEventId(taskDto.getExternalCalendarEventId())
             .build();
     }
 
-    public TaskDto toDto(Task task) {
+    public static TaskDto toDto(Task task) {
         return TaskDto.builder()
             .id(task.getId())
             .ownerUser(UserMapper.toDto(task.getOwner()))
@@ -22,6 +24,8 @@ public class TaskMapper {
             .title(task.getTitle())
             .description(task.getDescription())
             .status(task.getStatus())
+            .expectedCompletionDate(task.getExpectedCompletionDate())
+            .externalCalendarEventId(task.getExternalCalendarEventId())
             .build();
     }
 }

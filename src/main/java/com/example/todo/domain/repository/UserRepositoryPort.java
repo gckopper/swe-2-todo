@@ -7,4 +7,5 @@ import java.util.UUID;
 
 public interface UserRepositoryPort {
     Optional<User> findById(UUID userId);
+    void updateExternalCalendarToken(UUID userId, String token);
 }

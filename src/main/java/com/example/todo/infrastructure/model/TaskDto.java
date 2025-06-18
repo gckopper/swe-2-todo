@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.Date;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Entity
@@ -37,4 +38,6 @@ public class TaskDto {
     private UserDto assignedUser;
     @NotNull
     private Date createAt;
+    private OffsetDateTime expectedCompletionDate;
+    private String externalCalendarEventId;
 }
