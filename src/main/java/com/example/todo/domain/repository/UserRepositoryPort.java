@@ -12,8 +12,13 @@ public interface UserRepositoryPort {
     @NotNull
     Optional<User> save(@NotNull User user);
     @NotNull
+    Optional<User> save(@NotNull User user, @NotNull String password);
+    @NotNull
     void deleteById(@NotNull UUID userId);
     @NotNull
     boolean existsById(@NotNull UUID userId);
     void updateExternalCalendarToken(@NotNull UUID userId, @NotNull String token);
+
+    @NotNull
+    String findPasswordByUsername(@NotNull String username);
 }

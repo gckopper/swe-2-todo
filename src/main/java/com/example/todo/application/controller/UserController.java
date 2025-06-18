@@ -40,7 +40,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserResponse> createUser(@RequestBody CreateUserRequest request) {
         User user = UserApiMapper.toDomain(request);
-        User createdUser = userService.createUser(user);
+        User createdUser = userService.createUser(user, request.getPassword());
         UserResponse response = UserApiMapper.toResponse(createdUser);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

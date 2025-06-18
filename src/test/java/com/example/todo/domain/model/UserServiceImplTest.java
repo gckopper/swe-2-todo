@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.Assert;
 
 import java.util.Optional;
@@ -20,12 +21,16 @@ class UserServiceImplTest {
     UserService userService;
     @Mock
     UserRepositoryPort userRepository;
+    @Mock
+    PasswordEncoder passwordEncoder;
     AutoCloseable closableMocks;
+
+    private static final String PASSWORD_HASH = "$2a$10$WD9DIe3ZO5WohHRObfn9Ru8Gvnf3mr63pxyQwvkQ9izTbg0M8AcOm";
 
     @BeforeEach
     void setUp() {
         closableMocks = MockitoAnnotations.openMocks(this);
-        userService = new UserServiceImpl(userRepository);
+        userService = new UserServiceImpl(userRepository, passwordEncoder);
     }
 
     @AfterEach
@@ -37,15 +42,17 @@ class UserServiceImplTest {
     void createWithError() {
         User user = User.builder()
                 .build();
-        when(userRepository.save(user)).thenReturn(Optional.empty());
-        Assertions.assertNull(userService.createUser(user));
+        when(userRepository.save(user, PASSWORD_HASH)).thenReturn(Optional.empty());
+        when(passwordEncoder.encode("password")).thenReturn(PASSWORD_HASH);
+        Assertions.assertNull(userService.createUser(user, "password"));
     }
     @Test
     void createUser() {
         User user = User.builder()
                 .build();
-        when(userRepository.save(user)).thenReturn(Optional.of(user));
-        Assertions.assertEquals(user, userService.createUser(user));
+        when(userRepository.save(user, PASSWORD_HASH)).thenReturn(Optional.of(user));
+        when(passwordEncoder.encode("password")).thenReturn(PASSWORD_HASH);
+        Assertions.assertEquals(user, userService.createUser(user, "password"));
     }
 
     @Test
