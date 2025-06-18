@@ -27,6 +27,8 @@ relacionadas as regras de negócio que a aplicação possui
 ### Package infrastructure.repository
 Define adapters dos repositories definidos no domain utilizando algum framework como JPA.
 
+![Diagrama de Classes](architecture/assets/class_diagram.png)
+
 ## Consequências
 
 Modularização e manutenibilidade do sistema.
