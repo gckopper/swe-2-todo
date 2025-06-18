@@ -1,9 +1,11 @@
-package com.example.todo.domain.service;
+package com.example.todo.domain.model;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.example.todo.domain.service.CalendarService;
+import com.example.todo.domain.service.TaskService;
 import org.springframework.stereotype.Service;
 
 import com.example.todo.domain.model.Task;

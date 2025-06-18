@@ -1,6 +1,6 @@
 package com.example.todo.infrastructure.repository;
 
-import com.example.todo.infrastructure.model.TaskDto;
+import com.example.todo.infrastructure.dto.TaskDto;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

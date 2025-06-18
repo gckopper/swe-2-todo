@@ -1,6 +1,6 @@
 package com.example.todo.infrastructure.repository;
 
-import com.example.todo.infrastructure.model.UserDto;
+import com.example.todo.infrastructure.dto.UserDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

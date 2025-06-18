@@ -1,6 +1,7 @@
-package com.example.todo.infrastructure.model;
+package com.example.todo.infrastructure.mapper;
 
 import com.example.todo.domain.model.Task;
+import com.example.todo.infrastructure.dto.TaskDto;
 
 public class TaskMapper {
     public static Task toDomain(TaskDto taskDto) {
