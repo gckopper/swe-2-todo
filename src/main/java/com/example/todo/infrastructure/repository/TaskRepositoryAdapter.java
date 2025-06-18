@@ -8,8 +8,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.stereotype.Component;
+
+import lombok.RequiredArgsConstructor;
+
+@Component
+@RequiredArgsConstructor
 public class TaskRepositoryAdapter implements TaskRepositoryPort {
-    JpaTaskRepository taskRepository;
+    private final JpaTaskRepository taskRepository;
 
     @Override
     public Optional<Task> findById(UUID taskId) {
@@ -25,5 +31,4 @@ public class TaskRepositoryAdapter implements TaskRepositoryPort {
     public List<Task> findByAssignedUserId(UUID assignedUserId) {
         return taskRepository.findByAssignedUserId(assignedUserId).stream().map(TaskMapper::toDomain).toList();
     }
-
 }

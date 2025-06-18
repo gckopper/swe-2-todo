@@ -7,8 +7,14 @@ import com.example.todo.infrastructure.model.UserMapper;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.stereotype.Component;
+
+import lombok.RequiredArgsConstructor;
+
+@Component
+@RequiredArgsConstructor
 public class UserRepositoryAdapter implements UserRepositoryPort {
-    JpaUserRepository userRepository;
+    private final JpaUserRepository userRepository;
 
     @Override
     public Optional<User> findById(UUID userId) {
