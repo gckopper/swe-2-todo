@@ -30,25 +30,21 @@ public class CalendarServiceImpl implements CalendarService {
     }
     
     @Override
-    public void editCompletionDateEvent(Task task) {
+    public CalendarEvent editCompletionDateEvent(Task task) {
         if (!shouldUseCalendarService(task)) {
-            return;
+            return null;
         }
 
         if (task.getExpectedCompletionDate() == null) {
-            deleteCompletionDateEvent(task);
-            return;
+            return null;
         }
 
         CalendarEvent calendarEvent = task.toCompletionDateCalendarEvent();
 
         if (calendarEvent.getExternalEventId() == null)
-        {
-            calendarSink.insertEvent(calendarEvent);
-            return;
-        }
+            return calendarSink.insertEvent(calendarEvent);
 
-        calendarSink.editEvent(calendarEvent);
+        return calendarSink.editEvent(calendarEvent);
     }
     
     @Override

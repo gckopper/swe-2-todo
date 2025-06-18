@@ -32,7 +32,7 @@ public class GoogleCalendarSink implements CalendarSink {
     }
     
     @Override
-    public void editEvent(CalendarEvent event) {
+    public CalendarEvent editEvent(CalendarEvent event) {
         if (event.getExternalEventId() == null) {
             throw new IllegalArgumentException("Event must have an external ID to be edited");
         }
@@ -40,6 +40,7 @@ public class GoogleCalendarSink implements CalendarSink {
         try {
             Event googleEvent = createGoogleEvent(event);
             googleCalendarService.updateEvent(googleEvent, event.getExternalEventId(), event.getExternalToken());
+            return event; // TODO: We should be using the return of googleCalendarService to get this
         } catch (IOException | GeneralSecurityException e) {
             throw new RuntimeException("Failed to update calendar event", e);
         }
