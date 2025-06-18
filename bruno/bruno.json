@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "SWE 2 TODO",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
