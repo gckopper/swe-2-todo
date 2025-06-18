@@ -17,6 +17,10 @@ public class CalendarService {
         if (!shouldUseCalendarService(task)) {
             return null;
         }
+
+        if (task.getExpectedCompletionDate() == null) {
+            return null;
+        }
         
         CalendarEvent calendarEvent = task.toCompletionDateCalendarEvent();
 
@@ -25,6 +29,11 @@ public class CalendarService {
     
     public void editCompletionDateEvent(Task task) {
         if (!shouldUseCalendarService(task)) {
+            return;
+        }
+
+        if (task.getExpectedCompletionDate() == null) {
+            deleteCompletionDateEvent(task);
             return;
         }
 
