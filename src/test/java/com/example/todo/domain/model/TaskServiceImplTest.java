@@ -106,7 +106,7 @@ class TaskServiceImplTest {
         Task task = Task.builder()
                 .id(UUID.randomUUID())
                 .build();
-        when(taskRepository.findById(task.getId())).thenReturn(Optional.of(task));
+        when(taskRepository.findById(task.getId())).thenReturn(Optional.empty());
 
         Assertions.assertNull(taskService.getTaskById(task.getId()));
     }
