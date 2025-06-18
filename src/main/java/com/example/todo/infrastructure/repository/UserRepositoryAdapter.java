@@ -19,23 +19,33 @@ public class UserRepositoryAdapter implements UserRepositoryPort {
 
     @Override
     public Optional<User> findById(UUID userId) {
-        return userRepository.findById(userId).map(UserMapper::toDomain);
-    }
+        Optional<UserDto> userOption = userRepository.findById(userId);
 
-    @Override
-    public Optional<User> save(User user) {
+        if (userOption.isPresent()) {
+            UserDto user = userOption.get();
+            return Optional.of(UserMapper.toDomain(user));
+        }
         return Optional.empty();
     }
 
     @Override
-    public void deleteById(UUID userId) {
+    public Optional<User> save(User user) {
+        UserDto userDto = UserMapper.toDto(user);
+        UserDto savedUser = userRepository.save(userDto);
+        return Optional.of(UserMapper.toDomain(savedUser));
+    }
 
+    @Override
+    public void deleteById(UUID userId) {
+        userRepository.deleteById(userId);
     }
 
     @Override
     public boolean existsById(UUID userId) {
-        return false;
+        return userRepository.existsById(userId);
     }
+
+    @Override
     public void updateExternalCalendarToken(UUID userId, String token) {
         Optional<UserDto> userOption = userRepository.findById(userId);
 
