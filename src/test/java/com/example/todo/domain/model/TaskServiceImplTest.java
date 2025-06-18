@@ -164,4 +164,38 @@ class TaskServiceImplTest {
         Assertions.assertFalse(taskService.deleteTask(task.getId()));
     }
 
+    @Test
+    public void advancedFilter(){
+        UUID userId = UUID.randomUUID();
+        User user = User.builder().id(userId).build();
+        List<Task> lis = List.of(
+                Task.builder().id(UUID.randomUUID()).assignedToUser(user).build(),
+                Task.builder().id(UUID.randomUUID()).assignedToUser(user).build(),
+                Task.builder().id(UUID.randomUUID()).assignedToUser(user).build(),
+                Task.builder().id(UUID.randomUUID()).assignedToUser(user).build(),
+                Task.builder().id(UUID.randomUUID()).assignedToUser(user).build()
+        );
+        when(taskRepository.findByAssignedUserId(userId)).thenReturn(lis);
+        List<Task> tasks = taskService.getTasksByAssignedUserWithFilters(userId, null, null, null );
+        Assertions.assertEquals(lis, tasks);
+    }
+    @Test
+    public void advancedFilterWithTitle(){
+        UUID userId = UUID.randomUUID();
+        User user = User.builder().id(userId).build();
+        List<Task> lis = List.of(
+                Task.builder().id(UUID.randomUUID()).title("ABC").assignedToUser(user).build(),
+                Task.builder().id(UUID.randomUUID()).title("BCD").assignedToUser(user).build(),
+                Task.builder().id(UUID.randomUUID()).title("CDE").assignedToUser(user).build(),
+                Task.builder().id(UUID.randomUUID()).title("DEF").assignedToUser(user).build(),
+                Task.builder().id(UUID.randomUUID()).title("EFG").assignedToUser(user).build()
+        );
+        when(taskRepository.findByAssignedUserId(userId)).thenReturn(lis);
+        List<Task> tasks = taskService.getTasksByAssignedUserWithFilters(userId, null, null, "C" );
+        List<Task> expected = List.of(
+                lis.get(0), lis.get(1), lis.get(2)
+        );
+        Assertions.assertEquals(expected, tasks);
+    }
+
 }
