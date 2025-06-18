@@ -3,14 +3,12 @@ package com.example.todo.domain.model;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.time.OffsetDateTime;
 
 import com.example.todo.domain.service.CalendarService;
 import com.example.todo.domain.service.TaskService;
 import org.springframework.stereotype.Service;
 
-import com.example.todo.domain.model.Task;
-import com.example.todo.domain.model.TaskStatus;
-import com.example.todo.domain.model.User;
 import com.example.todo.domain.repository.TaskRepositoryPort;
 import com.example.todo.domain.repository.UserRepositoryPort;
 
@@ -130,5 +128,30 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<Task> getTasksForUser(User user) {
         return this.taskRepository.findByAssignedUserId(user.getId());
+    }
+
+    @Override
+    public List<Task> getTasksByAssignedUserWithFilters(UUID userId, TaskStatus status, OffsetDateTime dueBefore, String title) {
+        List<Task> tasks = taskRepository.findByAssignedUserId(userId);
+        
+        if (status != null) {
+            tasks = tasks.stream()
+                .filter(task -> task.getStatus() == status)
+                .toList();
+        }
+        
+        if (dueBefore != null) {
+            tasks = tasks.stream()
+                .filter(task -> task.getExpectedCompletionDate() != null && task.getExpectedCompletionDate().isBefore(dueBefore))
+                .toList();
+        }
+        
+        if (title != null && !title.trim().isEmpty()) {
+            tasks = tasks.stream()
+                .filter(task -> task.getTitle() != null && task.getTitle().toLowerCase().contains(title.toLowerCase()))
+                .toList();
+        }
+        
+        return tasks;
     }
 } 
