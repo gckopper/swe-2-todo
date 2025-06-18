@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.UUID;
 
 public interface TaskService {
-    Task getTasksById(UUID taskId);
+    Task createTask(Task task);
+    Task getTaskById(UUID taskId);
+    List<Task> getTasksByAssignedUser(UUID userId);
+    Task updateTask(UUID taskId, Task taskUpdate);
+    boolean deleteTask(UUID taskId);
     List<Task> getTasksForUser(User user);
 }

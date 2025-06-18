@@ -15,4 +15,5 @@ public interface UserRepositoryPort {
     void deleteById(@NotNull UUID userId);
     @NotNull
     boolean existsById(@NotNull UUID userId);
+    void updateExternalCalendarToken(@NotNull UUID userId, @NotNull String token);
 }
