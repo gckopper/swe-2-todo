@@ -27,7 +27,11 @@ relacionadas as regras de negócio que a aplicação possui
 ### Package infrastructure.repository
 Define adapters dos repositories definidos no domain utilizando algum framework como JPA.
 
-![Diagrama de Classes](architecture/assets/class_diagram.png)
+### Diagrama de Classes - User
+![Diagrama de Classes - User](architecture/assets/user_diagram.png)
+
+### Diagrama de Classes - Task
+![Diagrama de Classes - User](architecture/assets/task_diagram.png)
 
 ## Consequências
 
