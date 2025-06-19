@@ -1,0 +1,20 @@
+services:
+  app:
+    image: ghcr.io/gckopper/swe-2-todo
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
+    container_name: todo-app
+    ports:
+      - "8080:8080"
+    environment:
+      PG_HOST: "postgres"
+  postgres:
+    image: 'postgres:alpine'
+    container_name: todo-db
+    environment:
+      - 'POSTGRES_DB=postgres'
+      - 'POSTGRES_PASSWORD=secret'
+      - 'POSTGRES_USER=postgres'
+    ports:
+      - '5432:5432'
