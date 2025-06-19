@@ -6,6 +6,10 @@ As equipes deverão desenvolver uma API para um sistema de Gestão de tarefas Co
 criem, editem, atribuam e concluam tarefas. A API deve seguir uma arquitetura bem definida (por exemplo, Arquitetura
 Hexagonal, Clean Architecture ou MVC), garantindo boas práticas de desacoplamento e modularização.
 
+## Deployments
+
+Para acessar a documentação [clique aqui](https://gckopper.github.io/swe-2-todo/)
+
 ## Desenvolvimento
 
 Inicie uma instância do postgres com o docker caso ainda não tenha uma rodando.
