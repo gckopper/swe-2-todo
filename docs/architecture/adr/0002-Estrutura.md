@@ -28,10 +28,10 @@ relacionadas as regras de negócio que a aplicação possui
 Define adapters dos repositories definidos no domain utilizando algum framework como JPA.
 
 ### Diagrama de Classes - User
-![Diagrama de Classes - User](/docs/architecture/assets/user_diagram.png)
+![Diagrama de Classes - User](../assets/user_diagram.png)
 
 ### Diagrama de Classes - Task
-![Diagrama de Classes - User](/docs/architecture/assets/task_diagram.png)
+![Diagrama de Classes - User](../assets/task_diagram.png)
 
 ## Consequências
 
